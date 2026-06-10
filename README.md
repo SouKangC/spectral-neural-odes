@@ -2,9 +2,7 @@
 
 Code for our ECE 228 project on putting a spectral inductive bias inside a Neural
 ODE. We propose **LSA-NODE**, a Neural ODE whose vector field runs attention over
-the short-time spectrum of the state, and study why it fails: the attention output
-is trapped in the span of a spectral dictionary, so it memorizes training spectra
-instead of learning a generalizing field. The diagnosis motivates a working fix,
+the short-time spectrum of the state, and study why it fails. The diagnosis motivates a working fix,
 **ODE-RNN-Hybrid**, which sums a time-domain MLP with a dense spectral MLP inside
 an ODE-RNN encoder.
 
