@@ -1,0 +1,34 @@
+exp_id: lotka_volterra__irregular
+model:
+  name: lsa_node
+  in_dim: 3
+  out_dim: 3
+  hidden_dim: 64
+  n_fft: 16
+  hop_length: 4
+  d_att: 64
+  n_heads: 4
+  time_emb_dim: 16
+  encoder_hidden: 64
+  decoder_hidden: 64
+  solver: dopri5
+  rtol: 1.0e-05
+  atol: 1.0e-07
+  use_adjoint: true
+  mlp_dim: 128
+train:
+  epochs: 1000
+  batch_size: 32
+  lr: 0.001
+  weight_decay: 0.0
+  grad_clip: 1.0
+  log_every: 50
+data:
+  name: lotka_volterra
+  sampling: irregular
+  in_len: 30
+  out_len: 30
+  train_frac: 0.8
+  irregular_keep_rate: 0.3
+  n_points: 1000
+  t_max: 80.0

@@ -1,0 +1,28 @@
+exp_id: hybnt_long_glycolytic__regular
+model:
+  name: ode_rnn_hybrid_notime
+  in_dim: 2
+  out_dim: 2
+  hidden_dim: 64
+  mlp_dim: 64
+  fode_mlp_dim: 16
+  fode_depth: 3
+  solver: dopri5
+  rtol: 0.001
+  atol: 0.0001
+  use_adjoint: false
+train:
+  epochs: 1000
+  batch_size: 32
+  lr: 0.001
+  weight_decay: 0.0
+  grad_clip: 1.0
+  log_every: 20
+data:
+  name: glycolytic
+  sampling: regular
+  in_len: 30
+  out_len: 30
+  train_frac: 0.8
+  n_points: 1000
+  t_max: 100.0

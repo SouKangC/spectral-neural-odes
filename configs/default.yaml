@@ -1,0 +1,38 @@
+# Default LSA-NODE configuration. Other configs inherit from this and
+# override only the deltas.
+
+model:
+  name: lsa_node
+  in_dim: 1
+  out_dim: 1
+  # Patch / ODE-state length N. Must satisfy W <= N so the STFT has at least
+  # one frame; with W=16, hop=4, N=64 gives L = (64-16)/4 + 1 = 13 frames.
+  hidden_dim: 64        # N — patch length & ODE-state length (was previously d ≠ N)
+  n_fft: 16             # STFT window length W
+  hop_length: 4         # STFT hop
+  d_att: 64             # attention embedding dim d_att (set to 2W if using residual)
+  n_heads: 4
+  task: regression
+  solver: dopri5
+  rtol: 1.0e-5
+  atol: 1.0e-7
+
+train:
+  epochs: 1000
+  batch_size: 32
+  lr: 1.0e-3
+  weight_decay: 0.0
+  hoyer_weight: 0.0     # 0 disables; ablation may set ~1e-3
+  grad_clip: 1.0
+  log_every: 50
+  ckpt_every: 100
+
+data:
+  name: periodic_3d_a   # see lsa_node/data/synthetic.py
+  amp: 0.05
+  n_train: 800
+  n_val: 100
+  n_test: 100
+  seq_len: 1000
+  in_len: 10
+  out_len: 10

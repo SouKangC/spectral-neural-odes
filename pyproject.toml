@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lsa-node"
+version = "0.0.1"
+description = "Localized Spectral Attention for Neural ODE"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Jinshi He" },
+    { name = "Nishant Arya" },
+    { name = "Yuan Liu" },
+]
+dependencies = [
+    # torch ≥2.9 ships with CUDA 13.0 wheels which Delta's 12.8 driver can't
+    # use — pin to a known-good cu128 build. See docs/compute_plan.md.
+    "torch>=2.7,<2.9",
+    "torchdiffeq>=0.2.5",
+    "torchcde>=0.2.5",
+    "torchsde>=0.2.6",
+    "numpy>=1.24",
+    "scipy>=1.11",
+    "pyyaml>=6.0",
+    "tqdm>=4.66",
+    "pandas>=2.0",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.5",
+    "mypy>=1.10",
+    "ipykernel>=6.29",
+]
+log = [
+    "tensorboard>=2.16",
+    "wandb>=0.17",
+]
+
+[tool.setuptools.packages.find]
+include = ["lsa_node*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# `-m "not slow"` keeps `pytest` quick by default; run slow tests
+# explicitly via `pytest -m slow` (typically on a GPU node).
+addopts = '-q -m "not slow"'
+markers = [
+    "slow: long-running tests (training overfit, large ODE solves) — run on a GPU node",
+]

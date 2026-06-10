@@ -1,0 +1,36 @@
+# 5-minute smoke run on tiny Periodic-3D-A. CPU-friendly.
+# Don't use for actual experiments — sizes are too small to learn well.
+
+exp_id: smoke
+
+model:
+  name: lsa_node
+  in_dim: 3            # periodic_3d outputs 3 channels
+  out_dim: 3
+  hidden_dim: 32       # N — patch length & ODE-state length (N >= n_fft)
+  n_fft: 8
+  hop_length: 4
+  d_att: 16
+  n_heads: 2
+  solver: rk4          # fixed step ⇒ predictable wall-clock on CPU
+  rtol: 1.0e-3
+  atol: 1.0e-4
+  use_adjoint: false
+
+train:
+  epochs: 5
+  batch_size: 4
+  lr: 5.0e-3
+  weight_decay: 0.0
+  grad_clip: 1.0
+  log_every: 5
+
+data:
+  name: periodic_3d_a
+  sampling: regular
+  amp: 0.05
+  n_points: 200
+  t_max: 10.0
+  in_len: 16
+  out_len: 8
+  train_frac: 0.8

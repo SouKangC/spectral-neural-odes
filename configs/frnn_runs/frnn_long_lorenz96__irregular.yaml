@@ -1,0 +1,28 @@
+exp_id: frnn_long_lorenz96__irregular
+model:
+  name: faithful_ode_rnn
+  in_dim: 8
+  out_dim: 8
+  hidden_dim: 64
+  mlp_dim: 64
+  solver: dopri5
+  rtol: 0.001
+  atol: 0.0001
+  use_adjoint: false
+train:
+  epochs: 1000
+  batch_size: 32
+  lr: 0.001
+  weight_decay: 0.0
+  grad_clip: 1.0
+  log_every: 20
+data:
+  name: lorenz96
+  sampling: irregular
+  in_len: 30
+  out_len: 30
+  train_frac: 0.8
+  irregular_keep_rate: 0.3
+  n_dim: 8
+  n_points: 2000
+  t_max: 20.0

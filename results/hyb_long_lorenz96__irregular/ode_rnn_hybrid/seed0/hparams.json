@@ -1,0 +1,38 @@
+{
+  "exp_id": "hyb_long_lorenz96__irregular",
+  "model": {
+    "name": "ode_rnn_hybrid",
+    "in_dim": 8,
+    "out_dim": 8,
+    "hidden_dim": 64,
+    "mlp_dim": 64,
+    "fode_mlp_dim": 16,
+    "fode_depth": 3,
+    "solver": "dopri5",
+    "rtol": 0.001,
+    "atol": 0.0001,
+    "use_adjoint": false
+  },
+  "train": {
+    "epochs": 1000,
+    "batch_size": 32,
+    "lr": 0.001,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "log_every": 20
+  },
+  "data": {
+    "name": "lorenz96",
+    "sampling": "irregular",
+    "in_len": 30,
+    "out_len": 30,
+    "train_frac": 0.8,
+    "irregular_keep_rate": 0.3,
+    "n_dim": 8,
+    "n_points": 2000,
+    "t_max": 20.0
+  },
+  "seed": 0,
+  "device": "cuda",
+  "n_params": 31018
+}

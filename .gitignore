@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Test / tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Training artifacts: keep the committed JSON/CSV summaries, ignore heavy outputs
+# (so a local retrain does not bloat the repo).
+results/**/metrics.jsonl
+results/**/checkpoints/
+results/**/*.pt
+results/**/*.ckpt
+results/**/tb/
+results/**/events.out.tfevents.*
+results/slurm-*.out
+results/slurm-*.err
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Backup files
+*.bak

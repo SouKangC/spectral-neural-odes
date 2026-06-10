@@ -1,0 +1,35 @@
+{
+  "exp_id": "fnode_long_lorenz63__irregular",
+  "model": {
+    "name": "faithful_node",
+    "in_dim": 3,
+    "out_dim": 3,
+    "hidden_dim": 64,
+    "mlp_dim": 64,
+    "solver": "dopri5",
+    "rtol": 0.001,
+    "atol": 0.0001,
+    "use_adjoint": false
+  },
+  "train": {
+    "epochs": 1000,
+    "batch_size": 32,
+    "lr": 0.001,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "log_every": 20
+  },
+  "data": {
+    "name": "lorenz63",
+    "sampling": "irregular",
+    "in_len": 30,
+    "out_len": 30,
+    "train_frac": 0.8,
+    "n_points": 4000,
+    "t_max": 40.0,
+    "irregular_keep_rate": 0.3
+  },
+  "seed": 2,
+  "device": "cuda",
+  "n_params": 30147
+}

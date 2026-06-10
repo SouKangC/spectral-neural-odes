@@ -1,0 +1,36 @@
+# H1 — Lotka-Volterra with a wider STFT window (covers ~12 s, ~30 % of
+# fundamental period vs. 15 % in the baseline).
+
+exp_id: H1_lotka_volterra__regular_w120
+model:
+  name: lsa_node
+  in_dim: 2
+  out_dim: 2
+  hidden_dim: 128       # patch length must be ≥ n_fft
+  n_fft: 64
+  hop_length: 16
+  d_att: 64
+  n_heads: 4
+  time_emb_dim: 16
+  encoder_hidden: 64
+  decoder_hidden: 64
+  solver: dopri5
+  rtol: 1.0e-3          # relaxed for speed; same as baseline since LV is non-chaotic
+  atol: 1.0e-5
+  use_adjoint: true
+  mlp_dim: 128
+train:
+  epochs: 1000
+  batch_size: 32
+  lr: 0.001
+  weight_decay: 0.0
+  grad_clip: 1.0
+  log_every: 50
+data:
+  name: lotka_volterra
+  sampling: regular
+  in_len: 120          # 4× longer than baseline → window covers ~12 s
+  out_len: 60
+  train_frac: 0.8
+  n_points: 1000
+  t_max: 100.0

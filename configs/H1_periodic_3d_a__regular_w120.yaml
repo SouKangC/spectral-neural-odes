@@ -1,0 +1,36 @@
+# H1 — Periodic-3D-A with a wider STFT window.
+
+exp_id: H1_periodic_3d_a__regular_w120
+model:
+  name: lsa_node
+  in_dim: 3
+  out_dim: 3
+  hidden_dim: 128
+  n_fft: 64
+  hop_length: 16
+  d_att: 64
+  n_heads: 4
+  time_emb_dim: 16
+  encoder_hidden: 64
+  decoder_hidden: 64
+  solver: dopri5
+  rtol: 1.0e-3
+  atol: 1.0e-5
+  use_adjoint: true
+  mlp_dim: 128
+train:
+  epochs: 1000
+  batch_size: 32
+  lr: 0.001
+  weight_decay: 0.0
+  grad_clip: 1.0
+  log_every: 50
+data:
+  name: periodic_3d_a
+  sampling: regular
+  in_len: 120          # ~2.4 s of input → ~0.4 fundamental periods (sin t has T=6.28s)
+  out_len: 60
+  train_frac: 0.8
+  amp: 0.05
+  n_points: 1000
+  t_max: 20.0

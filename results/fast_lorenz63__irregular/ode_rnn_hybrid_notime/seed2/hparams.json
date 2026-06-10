@@ -1,0 +1,42 @@
+{
+  "exp_id": "fast_lorenz63__irregular",
+  "model": {
+    "name": "ode_rnn_hybrid_notime",
+    "in_dim": 3,
+    "out_dim": 3,
+    "hidden_dim": 64,
+    "n_fft": 16,
+    "hop_length": 4,
+    "d_att": 64,
+    "n_heads": 4,
+    "time_emb_dim": 16,
+    "encoder_hidden": 64,
+    "decoder_hidden": 64,
+    "solver": "dopri5",
+    "rtol": 0.001,
+    "atol": 0.0001,
+    "use_adjoint": false,
+    "mlp_dim": 128
+  },
+  "train": {
+    "epochs": 300,
+    "batch_size": 32,
+    "lr": 0.001,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "log_every": 20
+  },
+  "data": {
+    "name": "lorenz63",
+    "sampling": "irregular",
+    "in_len": 30,
+    "out_len": 30,
+    "train_frac": 0.8,
+    "n_points": 4000,
+    "t_max": 40.0,
+    "irregular_keep_rate": 0.3
+  },
+  "seed": 2,
+  "device": "cuda",
+  "n_params": 28453
+}

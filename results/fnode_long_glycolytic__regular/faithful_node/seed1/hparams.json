@@ -1,0 +1,34 @@
+{
+  "exp_id": "fnode_long_glycolytic__regular",
+  "model": {
+    "name": "faithful_node",
+    "in_dim": 2,
+    "out_dim": 2,
+    "hidden_dim": 64,
+    "mlp_dim": 64,
+    "solver": "dopri5",
+    "rtol": 0.001,
+    "atol": 0.0001,
+    "use_adjoint": false
+  },
+  "train": {
+    "epochs": 1000,
+    "batch_size": 32,
+    "lr": 0.001,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "log_every": 20
+  },
+  "data": {
+    "name": "glycolytic",
+    "sampling": "regular",
+    "in_len": 30,
+    "out_len": 30,
+    "train_frac": 0.8,
+    "n_points": 1000,
+    "t_max": 100.0
+  },
+  "seed": 1,
+  "device": "cuda",
+  "n_params": 29890
+}
