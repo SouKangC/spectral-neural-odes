@@ -1,4 +1,4 @@
-# LSA-NODE: Localized Spectral Attention for Neural ODEs
+# Spectral Neural ODE: A Hybrid Spectral and Time-Domain Approach to Neural ODEs
 
 Code for our ECE 228 project on putting a spectral inductive bias inside a Neural
 ODE. We propose **LSA-NODE**, a Neural ODE whose vector field runs attention over
